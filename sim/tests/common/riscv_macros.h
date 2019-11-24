@@ -194,17 +194,11 @@ _run_test:
         fence;                                                          \
         la t0, fail_msg_str;                                            \
         li t1, 0xf0000000;                                              \
+        .printloop :                                                    \
         lb t2, 0(t0);                                                   \
         sb t2, 0(t1);                                                   \
-        lb t2, 1(t0);                                                   \
-        sb t2, 0(t1);                                                   \
-        lb t2, 2(t0);                                                   \
-        sb t2, 0(t1);                                                   \
-        lb t2, 3(t0);                                                   \
-        sb t2, 0(t1);                                                   \
-        lb t2, 4(t0);                                                   \
-        sb t2, 0(t1);                                                   \
         add t0, t0, 0x1;                                                \
+        bnez t2, .printloop;                                            \
         mv a1, TESTNUM;                                                 \
         li a0, 0x1;                                                     \
         ecall

@@ -89,15 +89,15 @@ endif
 TARGETS += riscv_isa
 
 # comment this target if you don't want to run the riscv_compliance
-TARGETS += riscv_compliance
+#TARGETS += riscv_compliance
 endif
 
 # comment this target if you don't want to run the coremark
-TARGETS += coremark
+#TARGETS += coremark
 # comment this target if you don't want to run the dhrystone
-TARGETS += dhrystone21
+#TARGETS += dhrystone21
 # comment this target if you don't want to run the hello test
-TARGETS += hello
+#TARGETS += hello
 
 # Targets
 .PHONY: tests run_modelsim run_vcs run_ncsim run_verilator run_verilator_wf

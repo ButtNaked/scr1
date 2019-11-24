@@ -15,6 +15,8 @@ STACK_SIZE = 1024;
 
 CL_SIZE = 32;
 
+RST_VECTOR = 0x1000;
+
 SECTIONS {
 
   /* code segment */
@@ -26,7 +28,7 @@ SECTIONS {
     SIM_STOP = .;
     LONG(0x6F);
     LONG(-1);
-    . = 0x100;
+    . = RST_VECTOR - .;
     PROVIDE(__TEXT_START__ = .);
     *(.text.init) 
   } >RAM

@@ -127,7 +127,7 @@ parameter int unsigned          SCR1_CSR_MTVEC_BASE_VAL_BITS    = `SCR1_XLEN-SCR
 `ifndef SCR1_ARCH_CUSTOM
 
 // Base address constants
-parameter bit [`SCR1_XLEN-1:0]          SCR1_ARCH_RST_VECTOR        = 'h200;            // Reset vector
+parameter bit [`SCR1_XLEN-1:0]          SCR1_ARCH_RST_VECTOR        = 'h1000;            // Reset vector
 parameter bit [`SCR1_XLEN-1:0]          SCR1_ARCH_CSR_MTVEC_BASE    = 'h1C0;            // MTVEC BASE field reset value
 
 parameter bit [`SCR1_DMEM_AWIDTH-1:0]   SCR1_TCM_ADDR_MASK          = 'hFFFF0000;       // TCM mask and size
@@ -168,7 +168,7 @@ parameter int unsigned  SCR1_CSR_MTVEC_BASE_RO_BITS = (`SCR1_XLEN-(SCR1_CSR_MTVE
 //-------------------------------------------------------------------------------
 // Parameters for simulation
 //-------------------------------------------------------------------------------
-//`define SCR1_SIM_ENV                    // enable simulation code (SVA, trace log)
+`define SCR1_SIM_ENV                    // enable simulation code (SVA, trace log)
 `define SCR1_TRACE_LOG_EN               // enable trace log
 `define SCR1_TRACE_LOG_FULL             // full trace log
 

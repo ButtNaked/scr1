@@ -178,15 +178,35 @@ _run_test:
 
 #define RVTEST_PASS                                                     \
         fence;                                                          \
+        la t0, pass_msg_str;                                            \
+        li t1, 0xf0000000;                                              \
+        lb t2, 0(t0);                                                   \
+        sb t2, 0(t1);                                                   \
+        lb t2, 1(t0);                                                   \
+        sb t2, 0(t1);                                                   \
+        add t0, t0, 0x1;                                                \
         mv a1, TESTNUM;                                                 \
-        li  a0, 0x0;                                                    \
+        li a0, 0x0;                                                     \
         ecall
 
 #define TESTNUM x28
 #define RVTEST_FAIL                                                     \
         fence;                                                          \
+        la t0, fail_msg_str;                                            \
+        li t1, 0xf0000000;                                              \
+        lb t2, 0(t0);                                                   \
+        sb t2, 0(t1);                                                   \
+        lb t2, 1(t0);                                                   \
+        sb t2, 0(t1);                                                   \
+        lb t2, 2(t0);                                                   \
+        sb t2, 0(t1);                                                   \
+        lb t2, 3(t0);                                                   \
+        sb t2, 0(t1);                                                   \
+        lb t2, 4(t0);                                                   \
+        sb t2, 0(t1);                                                   \
+        add t0, t0, 0x1;                                                \
         mv a1, TESTNUM;                                                 \
-        li  a0, 0x1;                                                    \
+        li a0, 0x1;                                                     \
         ecall
 
 //-----------------------------------------------------------------------
@@ -814,6 +834,10 @@ pass: \
 #-----------------------------------------------------------------------
 
 #define TEST_DATA
-
+pass_msg_str:             \
+        .string "v\n";     \
+fail_msg_str:             \
+        .string "dead\n";  \
+.align 4; #16 byte boundary alignment
 #endif
 
